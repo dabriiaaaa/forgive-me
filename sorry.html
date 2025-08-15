@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry!</title>
+<style>
+  body {
+    background-color: #ffe6f0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto;
+    text-align: center;
+  }
+  h1 {
+    margin: 10px;
+  }
+  #buttons {
+    margin-top: 20px;
+  }
+  button {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #ff99cc;
+    color: white;
+  }
+  button:hover {
+    background-color: #ff66b2;
+  }
+</style>
+</head>
+<body>
+
+<h1 id="message">I'M SORRY(╥﹏╥)</h1>
+<div id="buttons">
+  <button id="forgiveBtn">I forgive you</button>
+  <button id="noBtn">No</button>
+</div>
+
+<script>
+let noTexts = [
+  "Why not?",
+  "I'm really sorry",
+  "Pleaseeee..",
+  "I will cry",
+  "I;m begging you"
+];
+let noIndex = 0;
+let forgiveSize = 20;
+let noSize = 20;
+let stopShrinking = false;
+
+document.getElementById("forgiveBtn").addEventListener("click", showYey);
+document.getElementById("noBtn").addEventListener("click", function() {
+  let noBtn = document.getElementById("noBtn");
+
+  if (stopShrinking) {
+    noIndex = (noIndex + 1) % noTexts.length;
+    noBtn.textContent = noTexts[noIndex];
+    return;
+  }
+
+  noBtn.textContent = noTexts[noIndex];
+  noIndex++;
+
+  if (noIndex > noTexts.length - 1) {
+    stopShrinking = true;
+    noSize = 20;
+    forgiveSize = 300;
+    updateButtonSizes();
+    return;
+  }
+
+  forgiveSize += 20;
+  noSize -= 2;
+  updateButtonSizes();
+});
+
+function updateButtonSizes() {
+  document.getElementById("forgiveBtn").style.fontSize = forgiveSize + "px";
+  document.getElementById("noBtn").style.fontSize = noSize + "px";
+}
+
+function showYey() {
+  document.body.innerHTML = `
+    <div style="text-align: center; padding: 50px;">
+      <h1 style="font-size: 80px; color: #ff66b2; text-shadow: 2px 2px #ffb3d9;">Yeheeeey!!!!⸜(｡˃ ᵕ ˂ )⸝♡✨</h1>
+      <p style="font-size: 24px; color: #ff4da6;">I'm glad you forgive me</p>
+      <p style="font-size: 20px; color: #ff80bf;">hehe I know you will🌸</p>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
